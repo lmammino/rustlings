@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 mkdir -p "/tmp/rrun"
+
 FILENAME=$1
-SOURCE="${FILENAME}.rs"
+if [[ "$FILENAME" == *.rs ]]
+then
+    SOURCE="${FILENAME}"
+else
+    SOURCE="${FILENAME}.rs"
+fi
+
 HASH=$(md5 -q $SOURCE)
 DEST="/tmp/rrun/${FILENAME}_${HASH}"
 shift
