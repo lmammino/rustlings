@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+mkdir -p "/tmp/rrun"
+FILENAME=$1
+SOURCE="${FILENAME}.rs"
+HASH=$(md5 -q $SOURCE)
+DEST="/tmp/rrun/${FILENAME}_${HASH}"
+shift
+
+rustc "${SOURCE}" -o "${DEST}" && ${DEST} $@
